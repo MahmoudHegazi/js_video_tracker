@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<video width="320" height="240" id="myvideo" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+
+<script>
+v = document.getElementById('myvideo');
+main_counter = 0;
+collecter_counter = 0;
+function myfun() { setTimeout(function(){
+  collecter_counter += 1;
+  console.log(collecter_counter);
+  myfun();
+  }, 1000);
+ }
+ 
+function mypuase() {
+
+}
+
+var playTimer;
+
+function myPlay() {
+  playTimer = setTimeout(function(){
+  collecter_counter += 1;
+  console.log(collecter_counter);
+  myPlay();
+  }, 970);
+}
+
+function myPuase() {
+  clearTimeout(playTimer);
+  console.log('video pause at second : ' +     collecter_counter);
+  main_counter = collecter_counter;
+  
+
+}
+
+
+function myEnd() {
+  console.log(collecter_counter);
+  if (collecter_counter == 12) {
+    // send this main counter to server and add to database ajax required
+    main_counter = collecter_counter;
+    console.log('total watched time == total video time: ' + main_counter + ' Seconds');  
+  
+  } else if (collecter_counter > 12) {
+    // send this main counter to server and add to database ajax required
+    main_counter = collecter_counter;
+    console.log('total watched time > video time: ' + main_counter + 'Seconds');
+    
+  
+  } else if (collecter_counter > 3 && collecter_counter < 12) {
+    // send this main counter to server and add to database ajax required
+    main_counter = collecter_counter;
+    console.log('total watched time < video time: ' + main_counter + 'Seconds');  
+  
+  } else {
+    // send this main counter to server and add to database ajax required
+    main_counter = collecter_counter;
+    console.log('abuser who when start the class room go to the last second' +  main_counter + ' Seconds');
+  }
+  
+}
+ v.addEventListener('play', myPlay);
+ v.addEventListener('pause', myPuase);
+ v.addEventListener('ended', myEnd);
+
+</script>
+</body>
+</html>
