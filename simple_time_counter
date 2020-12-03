@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<video width="320" height="240" id="myvideo" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+
+<script>
+v = document.getElementById('myvideo');
+main_counter = 0;
+collecter_counter = 0;
+function myfun() { setTimeout(function(){
+  collecter_counter += 1;
+  console.log(collecter_counter);
+  myfun();
+  }, 1000);
+ }
+ 
+function mypuase() {
+
+}
+
+var playTimer;
+
+function myPlay() {
+  playTimer = setTimeout(function(){
+  collecter_counter += 1;
+  console.log(collecter_counter);
+  myPlay();
+  }, 970);
+}
+
+function myPuase() {
+  clearTimeout(playTimer);
+  console.log('video pause at second : ' +     collecter_counter);
+
+}
+ v.addEventListener('play', myPlay);
+ v.addEventListener('pause', myPuase);
+
+</script>
+</body>
+</html>
